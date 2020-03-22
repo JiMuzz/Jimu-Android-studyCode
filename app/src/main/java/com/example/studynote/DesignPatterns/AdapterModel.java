@@ -71,14 +71,13 @@ public class AdapterModel {
     /**
      * 电脑也同时拥有vga和hdmi接口
      */
-    public class RealClient{
-        public  void main(String[] args) {
-            vgaToHDMI2Computer computer=new vgaToHDMI2Computer();
+    public class RealClient {
+        public void main(String[] args) {
+            vgaToHDMI2Computer computer = new vgaToHDMI2Computer();
             computer.vgawork();
             computer.hdmiwork();
         }
     }
-
 
 
 }
