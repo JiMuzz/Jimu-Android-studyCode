@@ -1,8 +1,8 @@
 package com.example.studynote.DesignPatterns;
 
 
-/*
-   单例模式
+/**
+ * 单例模式
  */
 public class Singleton {
 
