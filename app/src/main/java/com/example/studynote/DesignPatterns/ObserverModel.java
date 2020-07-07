@@ -78,4 +78,6 @@ public class ObserverModel {
             mask.notify("口罩有货啦");
         }
     }
+
+
 }

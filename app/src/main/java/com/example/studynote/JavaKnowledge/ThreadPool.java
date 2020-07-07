@@ -1,5 +1,22 @@
 package com.example.studynote.JavaKnowledge;
 
+import android.app.IntentService;
+import android.content.Intent;
+import android.os.AsyncTask;
+import android.os.Handler;
+import android.os.HandlerThread;
+import android.os.Message;
+import android.os.UserManager;
+import android.util.Log;
+
+import androidx.annotation.NonNull;
+
+import com.example.studynote.DesignPatterns.Singleton;
+
+import org.json.JSONObject;
+
+import java.util.HashMap;
+import java.util.Map;
 import java.util.concurrent.ArrayBlockingQueue;
 import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.ExecutorService;
@@ -158,6 +175,52 @@ public class ThreadPool {
         }
 
     }
+
+
+
+    public void createThread(){
+        new AsyncTask<Void, Void, String>() {
+
+            @Override
+            protected void onPreExecute() {
+                //请求接口之前，初始化操作
+                super.onPreExecute();
+            }
+
+            @Override
+            protected String doInBackground(Void... parameters) {
+                //请求接口
+                return "";
+            }
+
+            @Override
+            protected void onProgressUpdate(Void... values) {
+                //在主线程显示线程任务执行的进度
+                super.onProgressUpdate(values);
+            }
+
+            @Override
+            protected void onPostExecute(String responseString) {
+                //接收线程任务执行结果
+            }
+        }.execute();
+    }
+
+
+    public class MyService extends IntentService {
+
+
+        private int count = 0;
+
+        public MyService() {
+            super("");
+        }
+
+        @Override
+        protected void onHandleIntent(Intent intent) {
+        }
+    }
+
 
 
 }

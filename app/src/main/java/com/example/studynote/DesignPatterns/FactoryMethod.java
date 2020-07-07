@@ -67,9 +67,14 @@ public class FactoryMethod {
     public class RealUser {
         public void main(String[] args) {
             Factory factory = new RealFactory();
-            Product product=factory.createProduct(PhoneProduct.class);
+            Product product = factory.createProduct(PhoneProduct.class);
             product.dosomething();
 
         }
     }
+
+
+
+
+
 }

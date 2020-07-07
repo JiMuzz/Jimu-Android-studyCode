@@ -175,6 +175,9 @@ public class DeepAndShallowCopy {
     }
 
 
+
+
+
     /*---------------深拷贝（有点累了额）----------------*/
 
     public class Favorite2 implements Cloneable {
