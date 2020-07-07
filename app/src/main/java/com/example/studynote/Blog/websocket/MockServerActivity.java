@@ -1,4 +1,4 @@
-package com.example.studynote.Blog;
+package com.example.studynote.Blog.websocket;
 
 import android.app.Activity;
 import android.os.Bundle;
@@ -9,8 +9,6 @@ import androidx.annotation.Nullable;
 import com.example.studynote.R;
 
 import org.jetbrains.annotations.NotNull;
-
-import java.io.IOException;
 
 import okhttp3.Response;
 import okhttp3.WebSocket;

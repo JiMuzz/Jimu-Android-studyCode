@@ -1,7 +1,6 @@
-package com.example.studynote.Blog;
+package com.example.studynote.Blog.websocket;
 
 import android.os.Handler;
-import android.text.TextUtils;
 import android.util.Log;
 
 import com.example.studynote.MainApplication;
@@ -12,8 +11,6 @@ import org.jetbrains.annotations.Nullable;
 import java.lang.ref.WeakReference;
 import java.util.ArrayList;
 import java.util.Iterator;
-import java.util.Timer;
-import java.util.TimerTask;
 import java.util.concurrent.TimeUnit;
 
 import okhttp3.OkHttpClient;
