@@ -32,7 +32,9 @@ dependencies {
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
     implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-core:1.2.1'
     implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-android:1.1.1'
-    implementation("com.squareup.okhttp3:okhttp:4.7.2")
+    implementation 'com.squareup.okhttp3:okhttp:4.7.2'
+    implementation 'com.squareup.okhttp3:mockwebserver:4.7.2'
+//    implementation 'org.conscrypt:conscrypt-android:2.2.1'
 }
 repositories {
     mavenCentral()

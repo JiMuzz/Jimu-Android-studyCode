@@ -1,6 +1,7 @@
 package com.example.studynote.Blog;
 
 import android.os.Handler;
+import android.text.TextUtils;
 import android.util.Log;
 
 import com.example.studynote.MainApplication;
@@ -28,7 +29,7 @@ import okio.ByteString;
  */
 public class WSManager {
 
-    private final String TAG = this.getClass().getSimpleName();
+    private final String TAG = "jimu";
     private final int DATE_NORMAL = 0;
 
     private static Handler sDelivery;
@@ -59,13 +60,11 @@ public class WSManager {
     /**
      * 初始化WebSocket
      */
-    public void init() {
-        mWbSocketUrl = "";
+    public void init(String url) {
+        mWbSocketUrl = url;
+        Log.e(TAG, "mWbSocketUrl=" + mWbSocketUrl);
         mClient = new OkHttpClient.Builder()
-                .writeTimeout(3, TimeUnit.SECONDS)
-                .readTimeout(3, TimeUnit.SECONDS)
-                .connectTimeout(3, TimeUnit.SECONDS)
-                .pingInterval(3, TimeUnit.SECONDS)
+                .pingInterval(10, TimeUnit.SECONDS)
                 .build();
         Request request = new Request.Builder()
                 .url(mWbSocketUrl)
@@ -87,14 +86,18 @@ public class WSManager {
 
         @Override
         public void onFailure(@NotNull WebSocket webSocket, @NotNull Throwable t, @Nullable Response response) {
+            Log.e(TAG, "onFailure！" + t.getMessage());
             super.onFailure(webSocket, t, response);
         }
 
         @Override
         public void onMessage(@NotNull WebSocket webSocket, @NotNull String text) {
             super.onMessage(webSocket, text);
-            Log.e(TAG,"收到消息！");
+            Log.e(TAG, "客户端收到消息:" + text);
             onWSDataChanged(DATE_NORMAL, text);
+
+            //测试发消息
+            webSocket.send("我是客户端，你好啊");
         }
 
         @Override
@@ -105,24 +108,26 @@ public class WSManager {
         @Override
         public void onOpen(@NotNull WebSocket webSocket, @NotNull Response response) {
             super.onOpen(webSocket, response);
-            Log.e(TAG,"连接成功！");
+            Log.e(TAG, "连接成功！");
 
-            //每隔五秒发送心跳包
-            final String message ="{\"msg\":\"ping\"}";
-            Timer timer = new Timer();
-            timer.schedule(new TimerTask() {
-                @Override
-                public void run() {
-                    send(message);
-                }
-            },5000);
+            //每隔五秒发送心跳包,如果自己有需求发送心跳包
+//            final String message = "{\"msg\":\"ping\"}";
+//            Timer timer = new Timer();
+//            timer.schedule(new TimerTask() {
+//                @Override
+//                public void run() {
+//                    send(message);
+//                }
+//            }, 5000);
 
         }
+
     }
 
 
     /**
      * 遍历监听者，发送消息
+     *
      * @param type
      * @param info
      */
@@ -152,6 +157,7 @@ public class WSManager {
 
     /**
      * 发送消息
+     *
      * @param message
      */
     public void send(final String message) {
@@ -161,7 +167,19 @@ public class WSManager {
     }
 
     /**
+     * 发送消息
+     *
+     * @param message
+     */
+    public void send(final ByteString message) {
+        if (mWebSocket != null) {
+            mWebSocket.send(message);
+        }
+    }
+
+    /**
      * 主动断开连接
+     *
      * @param code
      * @param reason
      */
@@ -173,16 +191,18 @@ public class WSManager {
 
     /**
      * 注册监听者
+     *
      * @param listener
      */
     public void registerWSDataListener(WebSocketDataListener listener) {
-        if (!sWeakRefListeners.contains(listener)){
+        if (!sWeakRefListeners.contains(listener)) {
             sWeakRefListeners.add(new WeakReference<>(listener));
         }
     }
 
     /**
      * 解绑监听
+     *
      * @param listener
      */
     public void unregisterWSDataListener(WebSocketDataListener listener) {
