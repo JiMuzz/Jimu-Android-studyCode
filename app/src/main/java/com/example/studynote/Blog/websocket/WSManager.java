@@ -1,6 +1,8 @@
 package com.example.studynote.Blog.websocket;
 
 import android.os.Handler;
+import android.os.Looper;
+import android.os.Message;
 import android.util.Log;
 
 import com.example.studynote.MainApplication;
@@ -11,6 +13,8 @@ import org.jetbrains.annotations.Nullable;
 import java.lang.ref.WeakReference;
 import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.Timer;
+import java.util.TimerTask;
 import java.util.concurrent.TimeUnit;
 
 import okhttp3.OkHttpClient;
@@ -39,6 +43,8 @@ public class WSManager {
     //连接的websocket地址
     private String mWbSocketUrl;
 
+    private boolean isReceivePong;
+
     public static WSManager getInstance() {
         if (sInstance == null) {
             synchronized (WSManager.class) {
@@ -59,10 +65,16 @@ public class WSManager {
      */
     public void init(String url) {
         mWbSocketUrl = url;
+        //测试url
+        mWbSocketUrl = "ws://echo.websocket.org";
         Log.e(TAG, "mWbSocketUrl=" + mWbSocketUrl);
         mClient = new OkHttpClient.Builder()
                 .pingInterval(10, TimeUnit.SECONDS)
                 .build();
+        connect();
+    }
+
+    public void connect() {
         Request request = new Request.Builder()
                 .url(mWbSocketUrl)
                 .build();
@@ -74,6 +86,13 @@ public class WSManager {
         @Override
         public void onClosed(@NotNull WebSocket webSocket, int code, @NotNull String reason) {
             super.onClosed(webSocket, code, reason);
+            Log.e(TAG, "onClosed！");
+            //断线重连
+            if (code == 1001) {
+                Log.e(TAG, "断线重连！");
+                connect();
+            }
+
         }
 
         @Override
@@ -83,18 +102,24 @@ public class WSManager {
 
         @Override
         public void onFailure(@NotNull WebSocket webSocket, @NotNull Throwable t, @Nullable Response response) {
-            Log.e(TAG, "onFailure！" + t.getMessage());
             super.onFailure(webSocket, t, response);
+            Log.e(TAG, "onFailure！" + t.getMessage());
         }
 
         @Override
         public void onMessage(@NotNull WebSocket webSocket, @NotNull String text) {
             super.onMessage(webSocket, text);
             Log.e(TAG, "客户端收到消息:" + text);
+
+            if (text.contains("pong")) {
+                //简易写法，是否为pong包
+                isReceivePong = true;
+                return;
+            }
+
             onWSDataChanged(DATE_NORMAL, text);
 
-            //测试发消息
-            webSocket.send("我是客户端，你好啊");
+
         }
 
         @Override
@@ -107,19 +132,36 @@ public class WSManager {
             super.onOpen(webSocket, response);
             Log.e(TAG, "连接成功！");
 
-            //每隔五秒发送心跳包,如果自己有需求发送心跳包
-//            final String message = "{\"msg\":\"ping\"}";
-//            Timer timer = new Timer();
-//            timer.schedule(new TimerTask() {
-//                @Override
-//                public void run() {
-//                    send(message);
-//                }
-//            }, 5000);
+            mWebSocket = webSocket;
+            //测试发消息
+            webSocket.send("我是客户端，你好啊");
+
+            //主动发送心跳包
+            isReceivePong = true;
+            heartHandler.sendEmptyMessage(10);
 
         }
 
     }
+
+    // 发送心跳包
+    Handler heartHandler = new Handler(Looper.getMainLooper(), new Handler.Callback() {
+        @Override
+        public boolean handleMessage(Message msg) {
+            if (msg.what != 10) return false;
+
+            final String message = "{\"action\":\"ping\"}";
+            if (isReceivePong) {
+                send(message);
+                isReceivePong = false;
+                heartHandler.sendEmptyMessageDelayed(10, 10000);
+            } else {
+                //没有收到pong命令，进行重连
+                disconnect(1001, "断线重连");
+            }
+            return false;
+        }
+    });
 
 
     /**

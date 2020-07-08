@@ -75,6 +75,8 @@ public class MockServerActivity extends Activity {
         String websocketUrl = "ws://" + mMockWebServer.getHostName() + ":" + mMockWebServer.getPort() + "/";
         WSManager.getInstance().init(websocketUrl);
 
+
+
     }
 
     @Override
