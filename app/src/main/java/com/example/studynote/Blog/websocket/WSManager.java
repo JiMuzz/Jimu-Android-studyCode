@@ -64,9 +64,11 @@ public class WSManager {
      * 初始化WebSocket
      */
     public void init(String url) {
+        //使用模拟服务器（不支持断线重连）
         mWbSocketUrl = url;
-        //测试url
+        //使用测试url（支持断线重连）
         mWbSocketUrl = "ws://echo.websocket.org";
+
         Log.e(TAG, "mWbSocketUrl=" + mWbSocketUrl);
         mClient = new OkHttpClient.Builder()
                 .pingInterval(10, TimeUnit.SECONDS)
