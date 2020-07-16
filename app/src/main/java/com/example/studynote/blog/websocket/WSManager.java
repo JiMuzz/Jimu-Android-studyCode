@@ -1,4 +1,4 @@
-package com.example.studynote.Blog.websocket;
+package com.example.studynote.blog.websocket;
 
 import android.os.Handler;
 import android.os.Looper;
@@ -13,8 +13,6 @@ import org.jetbrains.annotations.Nullable;
 import java.lang.ref.WeakReference;
 import java.util.ArrayList;
 import java.util.Iterator;
-import java.util.Timer;
-import java.util.TimerTask;
 import java.util.concurrent.TimeUnit;
 
 import okhttp3.OkHttpClient;
@@ -146,6 +144,9 @@ public class WSManager {
 
     }
 
+
+
+
     // 发送心跳包
     Handler heartHandler = new Handler(Looper.getMainLooper(), new Handler.Callback() {
         @Override
@@ -267,4 +268,7 @@ public class WSManager {
     public interface WebSocketDataListener {
         void onWebSocketData(int type, String data);
     }
+
+
 }
+

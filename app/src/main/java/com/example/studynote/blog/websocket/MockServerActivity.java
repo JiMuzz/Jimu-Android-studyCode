@@ -1,4 +1,4 @@
-package com.example.studynote.Blog.websocket;
+package com.example.studynote.blog.websocket;
 
 import android.app.Activity;
 import android.os.Bundle;
