@@ -1,46 +1,44 @@
 package com.example.studynote.blog.jetpack
 
-import android.app.Activity
 import android.content.Context
 import android.location.Location
-import android.location.LocationListener
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import androidx.lifecycle.Lifecycle
-import androidx.lifecycle.LifecycleObserver
-import androidx.lifecycle.OnLifecycleEvent
+import androidx.lifecycle.*
 
 
-class BindingActivity : Activity() {
+class BindingActivity : AppCompatActivity(), LifecycleOwner {
 
-    private lateinit var myLocationListener: MyLocationListener
+
+    private lateinit var lifecycleRegistry: LifecycleRegistry
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        myLocationListener = MyLocationListener(this) { location ->
-            // update UI
-        }
+        lifecycleRegistry = LifecycleRegistry(this)
+        lifecycleRegistry.markState(Lifecycle.State.CREATED)
 
     }
 
     public override fun onStart() {
         super.onStart()
-        myLocationListener.start()
+        lifecycleRegistry.markState(Lifecycle.State.STARTED)
     }
 
-    public override fun onStop() {
-        super.onStop()
-        myLocationListener.stop()
-    }
 
     internal class MyLocationListener(
             private val context: Context,
             private val callback: (Location) -> Unit
-    ) {
+    ) : LifecycleObserver {
+
+//        myLocationListener = MyLocationListener(this) { location ->
+//            // update UI
+//        }
+//        lifecycle.addObserver(myLocationListener)
 
         @OnLifecycleEvent(Lifecycle.Event.ON_START)
         fun start() {
+
         }
 
         @OnLifecycleEvent(Lifecycle.Event.ON_STOP)
