@@ -2,9 +2,10 @@ package com.example.studynote.android11
 
 import android.Manifest
 import android.app.Activity
-import android.content.ContentUris
 import android.content.Context
+import android.content.DialogInterface
 import android.content.Intent
+import android.content.pm.PackageManager
 import android.database.Cursor
 import android.net.Uri
 import android.os.Build
@@ -14,8 +15,9 @@ import android.provider.MediaStore
 import android.telephony.PhoneStateListener
 import android.telephony.TelephonyDisplayInfo
 import android.telephony.TelephonyManager
-import android.util.Log
+import android.widget.Toast
 import androidx.annotation.RequiresApi
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import com.example.studynote.R
@@ -39,7 +41,8 @@ class Android11Test2Activity : AppCompatActivity() {
 
 //            requestPermissions(arrayOf(Manifest.permission.ACCESS_COARSE_LOCATION), 100)
 //            requestPermissions(arrayOf(Manifest.permission.ACCESS_BACKGROUND_LOCATION), 100)
-            requestPermissions(arrayOf(Manifest.permission.READ_PHONE_STATE,Manifest.permission.READ_EXTERNAL_STORAGE,Manifest.permission.WRITE_EXTERNAL_STORAGE), 100)
+//            requestPermissions(arrayOf(Manifest.permission.ACCESS_COARSE_LOCATION,Manifest.permission.ACCESS_BACKGROUND_LOCATION), 100)
+//            requestPermissions(arrayOf(Manifest.permission.READ_PHONE_STATE,Manifest.permission.READ_EXTERNAL_STORAGE,Manifest.permission.WRITE_EXTERNAL_STORAGE), 100)
 //            requestPermissions(arrayOf(Manifest.permission.READ_EXTERNAL_STORAGE), 100)
 //            requestPermissions(arrayOf(Manifest.permission.WRITE_EXTERNAL_STORAGE), 100)
 
@@ -84,17 +87,17 @@ class Android11Test2Activity : AppCompatActivity() {
 //            startActivityForResult(intent, 100)
 
 
-            val cursor = contentResolver.query(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, null, null, null, "${MediaStore.MediaColumns.DATE_ADDED} desc")
-//            val cursor = contentResolver.query(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, arrayOf(MediaStore.Images.Media._ID), MediaStore.Images.Media.DATA + "=? ", null, null)
-
-            if (cursor != null) {
-                while (cursor.moveToNext()) {
-                    val id = cursor.getLong(cursor.getColumnIndexOrThrow(MediaStore.MediaColumns._ID))
-                    val uri = ContentUris.withAppendedId(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, id)
-                    Log.e(TAG,"image uri is $uri")
-                }
-                cursor.close()
-            }
+//            val cursor = contentResolver.query(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, null, null, null, "${MediaStore.MediaColumns.DATE_ADDED} desc")
+////            val cursor = contentResolver.query(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, arrayOf(MediaStore.Images.Media._ID), MediaStore.Images.Media.DATA + "=? ", null, null)
+//
+//            if (cursor != null) {
+//                while (cursor.moveToNext()) {
+//                    val id = cursor.getLong(cursor.getColumnIndexOrThrow(MediaStore.MediaColumns._ID))
+//                    val uri = ContentUris.withAppendedId(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, id)
+//                    Log.e(TAG,"image uri is $uri")
+//                }
+//                cursor.close()
+//            }
 
 
 //            val urisToModify = listOf(Uri.parse("content://com.android.providers.media.documents/document/image%3A39"),Uri.parse("content://com.android.providers.media.documents/document/image%3A38"))
@@ -123,6 +126,66 @@ class Android11Test2Activity : AppCompatActivity() {
 //            val appSpecificExternalDir = File(getExternalFilesDir(""), "")
 
 //            getNetworkType()
+
+
+            val permissionAccessCoarseLocationApproved = ActivityCompat
+                    .checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) ==
+                    PackageManager.PERMISSION_GRANTED
+
+            if (permissionAccessCoarseLocationApproved) {
+                val backgroundLocationPermissionApproved = ActivityCompat
+                        .checkSelfPermission(this, Manifest.permission.ACCESS_BACKGROUND_LOCATION) ==
+                        PackageManager.PERMISSION_GRANTED
+
+                if (backgroundLocationPermissionApproved) {
+                    //前后台位置权限都有
+                } else {
+                    //申请后台权限
+                    if (applicationInfo.targetSdkVersion < Build.VERSION_CODES.R){
+                        ActivityCompat.requestPermissions(this,
+                                arrayOf(Manifest.permission.ACCESS_BACKGROUND_LOCATION),
+                                200)
+                    }else{
+                        AlertDialog.Builder(this).setMessage("需要提供后台位置权限，请在设置页面选择始终允许")
+                                .setPositiveButton("确定", DialogInterface.OnClickListener { dialog, which ->
+                                    ActivityCompat.requestPermissions(this,
+                                            arrayOf(Manifest.permission.ACCESS_BACKGROUND_LOCATION),
+                                            200)
+                                }).create().show()
+                    }
+                }
+            } else {
+                if (applicationInfo.targetSdkVersion < Build.VERSION_CODES.R){
+                    //申请前台和后台位置权限
+                    ActivityCompat.requestPermissions(this,
+                            arrayOf(Manifest.permission.ACCESS_COARSE_LOCATION,Manifest.permission.ACCESS_BACKGROUND_LOCATION),
+                            100)
+                }else{
+                    //申请前台位置权限
+                    ActivityCompat.requestPermissions(this,
+                            arrayOf(Manifest.permission.ACCESS_COARSE_LOCATION),
+                            100)
+                }
+
+            }
+
+
+
+
+        }
+
+
+        btn2.setOnClickListener {
+
+            val permissionAccessCoarseLocationApproved = ActivityCompat
+                    .checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) ==
+                    PackageManager.PERMISSION_GRANTED
+
+            val backgroundLocationPermissionApproved = ActivityCompat
+                    .checkSelfPermission(this, Manifest.permission.ACCESS_BACKGROUND_LOCATION) ==
+                    PackageManager.PERMISSION_GRANTED
+
+            showToast("$permissionAccessCoarseLocationApproved+++$backgroundLocationPermissionApproved")
         }
     }
 
