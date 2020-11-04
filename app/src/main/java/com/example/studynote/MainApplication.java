@@ -8,9 +8,12 @@ package com.example.studynote;
 
 import android.app.Application;
 
+import dagger.hilt.android.HiltAndroidApp;
+
 /**
  * AppContext
  */
+@HiltAndroidApp
 public class MainApplication extends Application {
     private static MainApplication sInstance;
 
@@ -18,6 +21,7 @@ public class MainApplication extends Application {
     public void onCreate() {
         super.onCreate();
         sInstance = this;
+
     }
 
     public static MainApplication getInstance() {

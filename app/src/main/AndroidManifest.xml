@@ -9,13 +9,13 @@
     <uses-permission android:name="android.permission.READ_PHONE_STATE" />
     <uses-permission android:name="android.permission.READ_PHONE_NUMBERS" />
 
-    <uses-permission android:name="android.permission.CAMERA"/>
+    <uses-permission android:name="android.permission.CAMERA" />
 
-    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE"/>
-    <uses-permission android:name="android.permission.CHANGE_WIFI_STATE"/>
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
 
 
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
@@ -25,6 +25,8 @@
     <uses-permission android:name="android.permission.QUERY_ALL_PACKAGES" />
 
     <uses-permission android:name="android.permission.MANAGE_EXTERNAL_STORAGE" />
+
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
 
 
     <application
@@ -37,7 +39,11 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".MainActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
 
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
 
         <activity android:name=".blog.websocket.MockServerActivity">
@@ -45,16 +51,41 @@
 
         </activity>
 
-        <activity android:name=".blog.jetpack.BindingActivity">
-        </activity>
+        <activity android:name=".blog.jetpack.BindingActivity"></activity>
 
         <activity android:name=".android11.Android11Test2Activity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
+
+        <activity android:name=".viewtest.ViewpagerActivity">
+
+
+        </activity>
+
+        <service
+            android:name=".android11.MyService"
+
+            />
+
+<!--        android:foregroundServiceType="location|camera|microphone"-->
+
+        <activity android:name=".actvitiytest.ActivityA">
+
+        </activity>
+        <activity
+            android:name=".actvitiytest.ActivityB"
+            android:launchMode="singleInstance">
+
+        </activity>
+        <activity android:name=".actvitiytest.ActivityC" />
+
+
+
+        <activity android:name=".Hilt.HiltActivitiy">
+
+        </activity>
+
+
     </application>
 
 </manifest>

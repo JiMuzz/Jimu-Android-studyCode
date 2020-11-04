@@ -1,15 +1,54 @@
 package com.example.studynote.android11;
 
+import android.app.Activity;
+import android.app.ActivityManager;
+import android.app.Application;
+import android.app.Instrumentation;
+import android.content.ComponentName;
 import android.content.Context;
+import android.content.Intent;
+import android.content.pm.ActivityInfo;
+import android.content.pm.ApplicationInfo;
+import android.content.pm.InstrumentationInfo;
+import android.content.pm.PackageManager;
+import android.content.res.Configuration;
+import android.graphics.Bitmap;
+import android.graphics.HardwareRenderer;
+import android.graphics.ImageDecoder;
+import android.net.Proxy;
+import android.os.AsyncTask;
+import android.os.Binder;
+import android.os.Build;
+import android.os.Debug;
+import android.os.IBinder;
+import android.os.LocaleList;
+import android.os.Message;
+import android.os.Process;
+import android.os.RemoteException;
+import android.os.StrictMode;
+import android.os.SystemClock;
+import android.os.Trace;
+import android.os.UserHandle;
+import android.provider.FontsContract;
+import android.provider.Settings;
+import android.util.DisplayMetrics;
+import android.util.EventLog;
+import android.util.EventLogTags;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.Window;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.studynote.MainApplication;
 import com.example.studynote.R;
+
+import java.io.File;
+import java.text.DateFormat;
+import java.util.Objects;
+import java.util.TimeZone;
 
 public class IToast {
     /**
@@ -52,6 +91,7 @@ public class IToast {
         toast.setView(view);
         toast.show();
     }
+
 
 
 }
