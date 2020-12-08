@@ -2,8 +2,7 @@ package com.example.studynote.android11
 
 import android.Manifest
 import android.app.AppOpsManager
-import android.app.AsyncNotedAppOp
-import android.app.SyncNotedAppOp
+
 import android.content.Context
 import android.content.pm.PackageManager
 import android.location.Location
@@ -50,54 +49,54 @@ class Android11TestActivity : AppCompatActivity() {
 //        }
 //    }
 
-    @RequiresApi(Build.VERSION_CODES.R)
+//    @RequiresApi(Build.VERSION_CODES.R)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_test1)
 
-        attributionContext = createAttributionContext("shareLocation")
-
-        val appOpsCallback = object : AppOpsManager.OnOpNotedCallback() {
-            private fun logPrivateDataAccess(
-                    opCode: String, attributionTag: String, trace: String) {
-                Log.i(TAG, "Private data accessed. " +
-                        "Operation: $opCode\n " +
-                        "Attribution Tag:$attributionTag\nStack Trace:\n$trace")
-            }
-
-            override fun onNoted(syncNotedAppOp: SyncNotedAppOp) {
-                syncNotedAppOp.attributionTag?.let {
-                    logPrivateDataAccess(syncNotedAppOp.op,
-                            it,
-                            Throwable().stackTrace.toString())
-                }
-            }
-
-            override fun onSelfNoted(syncNotedAppOp: SyncNotedAppOp) {
-                syncNotedAppOp.attributionTag?.let {
-                    logPrivateDataAccess(syncNotedAppOp.op,
-                            it,
-                            Throwable().stackTrace.toString())
-                }
-            }
-
-            override fun onAsyncNoted(asyncNotedAppOp: AsyncNotedAppOp) {
-                asyncNotedAppOp.attributionTag?.let {
-                    logPrivateDataAccess(asyncNotedAppOp.op,
-                            it,
-                            asyncNotedAppOp.message)
-                }
-            }
-        }
-
-        val appOpsManager =
-                getSystemService(AppOpsManager::class.java) as AppOpsManager
-        appOpsManager.setOnOpNotedCallback(mainExecutor, appOpsCallback)
-
-        btn1.setOnClickListener {
-//            requestPermissions(arrayOf(Manifest.permission.ACCESS_COARSE_LOCATION, Manifest.permission.ACCESS_FINE_LOCATION), 100)
-            getLocation()
-        }
+//        attributionContext = createAttributionContext("shareLocation")
+//
+//        val appOpsCallback = object : AppOpsManager.OnOpNotedCallback() {
+//            private fun logPrivateDataAccess(
+//                    opCode: String, attributionTag: String, trace: String) {
+//                Log.i(TAG, "Private data accessed. " +
+//                        "Operation: $opCode\n " +
+//                        "Attribution Tag:$attributionTag\nStack Trace:\n$trace")
+//            }
+//
+//            override fun onNoted(syncNotedAppOp: SyncNotedAppOp) {
+//                syncNotedAppOp.attributionTag?.let {
+//                    logPrivateDataAccess(syncNotedAppOp.op,
+//                            it,
+//                            Throwable().stackTrace.toString())
+//                }
+//            }
+//
+//            override fun onSelfNoted(syncNotedAppOp: SyncNotedAppOp) {
+//                syncNotedAppOp.attributionTag?.let {
+//                    logPrivateDataAccess(syncNotedAppOp.op,
+//                            it,
+//                            Throwable().stackTrace.toString())
+//                }
+//            }
+//
+//            override fun onAsyncNoted(asyncNotedAppOp: AsyncNotedAppOp) {
+//                asyncNotedAppOp.attributionTag?.let {
+//                    logPrivateDataAccess(asyncNotedAppOp.op,
+//                            it,
+//                            asyncNotedAppOp.message)
+//                }
+//            }
+//        }
+//
+//        val appOpsManager =
+//                getSystemService(AppOpsManager::class.java) as AppOpsManager
+//        appOpsManager.setOnOpNotedCallback(mainExecutor, appOpsCallback)
+//
+//        btn1.setOnClickListener {
+////            requestPermissions(arrayOf(Manifest.permission.ACCESS_COARSE_LOCATION, Manifest.permission.ACCESS_FINE_LOCATION), 100)
+//            getLocation()
+//        }
     }
 
 

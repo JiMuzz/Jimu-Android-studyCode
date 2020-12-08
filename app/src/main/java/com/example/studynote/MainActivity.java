@@ -1,12 +1,14 @@
 package com.example.studynote;
 
-import androidx.appcompat.app.AppCompatActivity;
+
 
 import android.os.Bundle;
 import android.os.Looper;
 import android.os.Trace;
 import android.util.Log;
 import android.util.LogPrinter;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.qiniu.android.dns.DnsManager;
 import com.qiniu.android.dns.Domain;
@@ -57,6 +59,7 @@ public class MainActivity extends AppCompatActivity {
             return -1;
         }
     }
+
 
 
 }

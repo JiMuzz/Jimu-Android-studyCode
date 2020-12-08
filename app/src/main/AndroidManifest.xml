@@ -39,11 +39,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".MainActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
 
         <activity android:name=".blog.websocket.MockServerActivity">
@@ -62,12 +58,11 @@
 
         </activity>
 
-        <service
-            android:name=".android11.MyService"
+        <service android:name=".android11.MyService"
 
             />
 
-<!--        android:foregroundServiceType="location|camera|microphone"-->
+        <!--        android:foregroundServiceType="location|camera|microphone"-->
 
         <activity android:name=".actvitiytest.ActivityA">
 
@@ -80,12 +75,66 @@
         <activity android:name=".actvitiytest.ActivityC" />
 
 
-
         <activity android:name=".Hilt.HiltActivitiy">
 
         </activity>
 
 
+        <!-- 切换icon-->
+        <activity android:name=".changeicon.SplashActivity">
+            <!--            <intent-filter>-->
+            <!--                <action android:name="android.intent.action.MAIN" />-->
+            <!--                <category android:name="android.intent.category.LAUNCHER" />-->
+            <!--            </intent-filter>-->
+        </activity>
+
+        <!--88会员节专属Activity别名-->
+        <activity-alias
+            android:name=".SplashAliasActivity"
+            android:enabled="false"
+            android:icon="@mipmap/tao1"
+            android:targetActivity="com.example.studynote.changeicon.SplashActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity-alias>
+
+        <!--双11专属Activity别名-->
+        <activity-alias
+            android:name=".SplashAlias2Activity"
+            android:enabled="false"
+            android:icon="@mipmap/tao2"
+            android:targetActivity="com.example.studynote.changeicon.SplashActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity-alias>
+
+
+        <activity android:name=".launchmode.StartActivity">
+        </activity>
+
+        <activity
+            android:name=".launchmode.SecondActivity"
+            android:launchMode="singleInstance">
+
+        </activity>
+
+
+
+        <activity android:name=".threadUI.UIMainActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+
+        <activity android:name=".recycleview.RecycleMainActivity">
+
+        </activity>
     </application>
 
 </manifest>

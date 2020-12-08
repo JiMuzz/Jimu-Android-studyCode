@@ -130,24 +130,24 @@ class Android11Test2Activity : AppCompatActivity() {
 
     @RequiresApi(Build.VERSION_CODES.M)
     fun getPermission() {
-        requestPermissions(arrayOf(Manifest.permission.ACCESS_COARSE_LOCATION), 100)
-        requestPermissions(arrayOf(Manifest.permission.ACCESS_BACKGROUND_LOCATION), 100)
-        requestPermissions(arrayOf(Manifest.permission.ACCESS_COARSE_LOCATION, Manifest.permission.ACCESS_BACKGROUND_LOCATION), 100)
-        requestPermissions(arrayOf(Manifest.permission.READ_PHONE_STATE, Manifest.permission.READ_EXTERNAL_STORAGE, Manifest.permission.WRITE_EXTERNAL_STORAGE), 100)
-        requestPermissions(arrayOf(Manifest.permission.READ_EXTERNAL_STORAGE), 100)
-        requestPermissions(arrayOf(Manifest.permission.WRITE_EXTERNAL_STORAGE), 100)
+//        requestPermissions(arrayOf(Manifest.permission.ACCESS_COARSE_LOCATION), 100)
+//        requestPermissions(arrayOf(Manifest.permission.ACCESS_BACKGROUND_LOCATION), 100)
+//        requestPermissions(arrayOf(Manifest.permission.ACCESS_COARSE_LOCATION, Manifest.permission.ACCESS_BACKGROUND_LOCATION), 100)
+//        requestPermissions(arrayOf(Manifest.permission.READ_PHONE_STATE, Manifest.permission.READ_EXTERNAL_STORAGE, Manifest.permission.WRITE_EXTERNAL_STORAGE), 100)
+//        requestPermissions(arrayOf(Manifest.permission.READ_EXTERNAL_STORAGE), 100)
+//        requestPermissions(arrayOf(Manifest.permission.WRITE_EXTERNAL_STORAGE), 100)
     }
 
     fun getlocation() {
-        val permissionAccessCoarseLocationApproved = ActivityCompat
-                .checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) ==
-                PackageManager.PERMISSION_GRANTED
-
-        val backgroundLocationPermissionApproved = ActivityCompat
-                .checkSelfPermission(this, Manifest.permission.ACCESS_BACKGROUND_LOCATION) ==
-                PackageManager.PERMISSION_GRANTED
-
-        showToast("$permissionAccessCoarseLocationApproved+++$backgroundLocationPermissionApproved")
+//        val permissionAccessCoarseLocationApproved = ActivityCompat
+//                .checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) ==
+//                PackageManager.PERMISSION_GRANTED
+//
+//        val backgroundLocationPermissionApproved = ActivityCompat
+//                .checkSelfPermission(this, Manifest.permission.ACCESS_BACKGROUND_LOCATION) ==
+//                PackageManager.PERMISSION_GRANTED
+//
+//        showToast("$permissionAccessCoarseLocationApproved+++$backgroundLocationPermissionApproved")
     }
 
     private fun getLocationPermission() {

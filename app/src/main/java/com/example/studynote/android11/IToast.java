@@ -13,7 +13,7 @@ import android.content.pm.InstrumentationInfo;
 import android.content.pm.PackageManager;
 import android.content.res.Configuration;
 import android.graphics.Bitmap;
-import android.graphics.HardwareRenderer;
+
 import android.graphics.ImageDecoder;
 import android.net.Proxy;
 import android.os.AsyncTask;
