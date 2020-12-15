@@ -11,6 +11,7 @@ import android.app.Application;
 import com.example.studynote.changeicon.LauncherIconManager;
 import com.example.studynote.changeicon.SplashActivity;
 import com.example.studynote.changeicon.SwitchIconTask;
+import com.example.studynote.exception.CrashHandler;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -28,6 +29,7 @@ public class MainApplication extends Application {
     public void onCreate() {
         super.onCreate();
         sInstance = this;
+
 
         //换图标
 //        LauncherIconManager.INSTANCE.register(this);
