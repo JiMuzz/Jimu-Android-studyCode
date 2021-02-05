@@ -2,6 +2,7 @@ package com.example.studynote;
 
 
 
+import android.app.Activity;
 import android.os.Bundle;
 import android.os.Looper;
 import android.os.Trace;
@@ -31,6 +32,7 @@ public class MainActivity extends AppCompatActivity {
 
         int[] a = new int[]{0, 1, 2, 3, 4, 11, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15};
         findRepeatNumber(a);
+
 
     }
 

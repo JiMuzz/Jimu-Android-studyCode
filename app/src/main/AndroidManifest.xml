@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="com.example.studynote">
 
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
@@ -136,12 +137,119 @@
         </activity>
 
         <activity android:name=".exception.ExceptionActivity">
+
+        </activity>
+
+        <activity android:name=".bitmap.BitmapActivity">
+
+        </activity>
+
+
+        <activity android:name=".handler.HandlerActivity">
+
+        </activity>
+
+        <activity android:name=".handler.Handler2Activity">
+
+        </activity>
+
+        <activity android:name=".handler.MainActivity">
+
+        </activity>
+
+
+        <service
+            android:name=".binder.AliWorldService"
+            android:process=":aliworld">
+
+        </service>
+
+        <activity android:name=".binder.QycWorldActivity">
+
+        </activity>
+
+
+
+        <activity android:name=".fragment.FragmentActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
     </application>
 
 </manifest>
+
+
+
+    <!--        <provider-->
+    <!--            android:name=".appstartup.LibraryAContentProvider"-->
+    <!--            android:authorities="${applicationId}.LibraryAContentProvider"-->
+    <!--            android:exported="false" />-->
+    <!--        <provider-->
+    <!--            android:name=".appstartup.LibraryBContentProvider"-->
+    <!--            android:authorities="${applicationId}.LibraryBContentProvider"-->
+    <!--            android:exported="false" />-->
+    <!--        <provider-->
+    <!--            android:name=".appstartup.LibraryCContentProvider"-->
+    <!--            android:authorities="${applicationId}.LibraryCAContentProvider"-->
+    <!--            android:exported="false" />-->
+    <!--        <provider-->
+    <!--            android:name=".appstartup.LibraryDContentProvider"-->
+    <!--            android:authorities="${applicationId}.LibraryDContentProvider"-->
+    <!--            android:exported="false" />-->
+    <!--        <provider-->
+    <!--            android:name=".appstartup.LibraryEContentProvider"-->
+    <!--            android:authorities="${applicationId}.LibraryEContentProvider"-->
+    <!--            android:exported="false" />-->
+    <!--        <provider-->
+    <!--            android:name=".appstartup.LibraryFContentProvider"-->
+    <!--            android:authorities="${applicationId}.LibraryFContentProvider"-->
+    <!--            android:exported="false" />-->
+    <!--        <provider-->
+    <!--            android:name=".appstartup.LibraryGContentProvider"-->
+    <!--            android:authorities="${applicationId}.LibraryGContentProvider"-->
+    <!--            android:exported="false" />-->
+    <!--        <provider-->
+    <!--            android:name=".appstartup.LibraryHContentProvider"-->
+    <!--            android:authorities="${applicationId}.LibraryHContentProvider"-->
+    <!--            android:exported="false" />-->
+    <!--        <provider-->
+    <!--            android:name=".appstartup.LibraryIContentProvider"-->
+    <!--            android:authorities="${applicationId}.LibraryIContentProvider"-->
+    <!--            android:exported="false" />-->
+    <!--        <provider-->
+    <!--            android:name=".appstartup.LibraryJContentProvider"-->
+    <!--            android:authorities="${applicationId}.LibraryJContentProvider"-->
+    <!--            android:exported="false" />-->
+
+
+    <!--        <provider-->
+    <!--            android:name="androidx.startup.InitializationProvider"-->
+    <!--            android:authorities="${applicationId}.androidx-startup"-->
+    <!--            android:exported="false"-->
+    <!--            tools:node="merge">-->
+
+    <!--            <meta-data  android:name="com.example.studynote.appstartup.LibraryAInitializer"-->
+    <!--                android:value="androidx.startup" />-->
+
+    <!--            <meta-data  android:name="com.example.studynote.appstartup.LibraryBInitializer"-->
+    <!--                android:value="androidx.startup" />-->
+
+    <!--            <meta-data  android:name="com.example.studynote.appstartup.LibraryCInitializer"-->
+    <!--                android:value="androidx.startup" />-->
+    <!--            <meta-data  android:name="com.example.studynote.appstartup.LibraryDInitializer"-->
+    <!--                android:value="androidx.startup" />-->
+    <!--            <meta-data  android:name="com.example.studynote.appstartup.LibraryEInitializer"-->
+    <!--                android:value="androidx.startup" />-->
+    <!--            <meta-data  android:name="com.example.studynote.appstartup.LibraryFInitializer"-->
+    <!--                android:value="androidx.startup" />-->
+    <!--            <meta-data  android:name="com.example.studynote.appstartup.LibraryGInitializer"-->
+    <!--                android:value="androidx.startup" />-->
+    <!--            <meta-data  android:name="com.example.studynote.appstartup.LibraryHInitializer"-->
+    <!--                android:value="androidx.startup" />-->
+    <!--            <meta-data  android:name="com.example.studynote.appstartup.LibraryIInitializer"-->
+    <!--                android:value="androidx.startup" />-->
+    <!--            <meta-data  android:name="com.example.studynote.appstartup.LibraryJInitializer"-->
+    <!--                android:value="androidx.startup" />-->
+    <!--        </provider>-->

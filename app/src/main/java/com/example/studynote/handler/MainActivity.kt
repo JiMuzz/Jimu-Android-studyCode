@@ -1,26 +1,20 @@
-package com.example.studynote.kotlin
+package com.example.studynote.handler
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.example.studynote.R
 import kotlinx.android.synthetic.main.activity_kotlin.*
 
-class KotlinActivity : AppCompatActivity() {
-
-
+class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_kotlin)
+        setContentView(R.layout.activity_handler)
 
-        var test = "nihao";
-        var test2 = "heihei"
-
-        getApplication()
 
         btn.setOnClickListener {
-            showToast("11")
 
+            startActivity(Intent(this, HandlerActivity::class.java))
         }
-
     }
 }

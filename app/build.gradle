@@ -4,6 +4,13 @@ apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-kapt'
 apply plugin: 'dagger.hilt.android.plugin'
 
+
+apply plugin: 'com.test.jimu'
+
+jimu{
+    age="10"
+}
+
 android {
     compileSdkVersion 28
     buildToolsVersion "28.0.3"
@@ -63,6 +70,10 @@ dependencies {
 
     implementation 'com.qiniu:happy-dns:0.2.13'
     implementation 'com.qiniu.pili:pili-android-qos:0.8'
+
+    implementation "androidx.startup:startup-runtime:1.0.0"
+
+    debugImplementation 'com.squareup.leakcanary:leakcanary-android:2.5'
 
 }
 repositories {
