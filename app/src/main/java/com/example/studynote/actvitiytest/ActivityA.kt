@@ -20,7 +20,7 @@ class ActivityA : AppCompatActivity() {
 
         val uri: Uri = Uri.parse("https://site241962.c.tsichuan.com/venues-list?type=42")
         val value: String? = uri.getQueryParameter("type")
-       var set1= uri.queryParameterNames
+        var set1= uri.queryParameterNames
         Log.e(TAG,"value="+value)
 
     }

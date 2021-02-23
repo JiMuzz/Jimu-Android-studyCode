@@ -171,11 +171,24 @@
 
 
         <activity android:name=".fragment.FragmentActivity">
+
+        </activity>
+
+
+        <activity android:name=".recenttask.ActivityTest1"
+
+            android:launchMode="standard">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <activity android:name=".recenttask.ActivityTest2"
+            android:launchMode="singleInstance">
+
+        </activity>
+
     </application>
 
 </manifest>
