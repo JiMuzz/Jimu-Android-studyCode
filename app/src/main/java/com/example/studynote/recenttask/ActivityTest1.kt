@@ -25,7 +25,11 @@ class ActivityTest1 : AppCompatActivity() {
         image.setText("ActivityTest1")
         image.setOnClickListener {
             var intent = Intent(this, ActivityTest2::class.java)
+//            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
 //            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_DOCUMENT)
+
+            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_DOCUMENT )
+            intent.addFlags(Intent.FLAG_ACTIVITY_MULTIPLE_TASK )
             startActivity(intent)
         }
 

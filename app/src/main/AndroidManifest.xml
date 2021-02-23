@@ -185,6 +185,7 @@
         </activity>
 
         <activity android:name=".recenttask.ActivityTest2"
+
             android:launchMode="singleInstance">
 
         </activity>

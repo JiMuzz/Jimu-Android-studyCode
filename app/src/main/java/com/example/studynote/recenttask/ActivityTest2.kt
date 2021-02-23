@@ -18,7 +18,12 @@ class ActivityTest2 :AppCompatActivity(){
 
         image.setBackgroundColor(resources.getColor(R.color.leak_canary_count_new_border))
         image.setText("ActivityTest2")
+        image.setOnClickListener {
+            var intent = Intent(this, ActivityTest1::class.java)
+//            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
 
+            startActivity(intent)
+        }
 
     }
 
