@@ -1,10 +1,6 @@
 package com.example.studynote.recenttask
 
-import android.app.ActivityManager
-import android.content.Context
 import android.content.Intent
-import android.content.pm.PackageManager
-import android.content.pm.ResolveInfo
 import android.os.Bundle
 import android.util.Log
 import android.view.View
@@ -21,16 +17,35 @@ class ActivityTest1 : AppCompatActivity() {
         Log.e("lz", TAG + "onCreate")
         setContentView(R.layout.activity_recent)
 
+//        Log.e("lz", "isTaskRoot=$isTaskRoot")
+//        if (!this.isTaskRoot) {
+//            // 不是该Task的根部
+//            if (intent != null) {
+//                var action = intent.action
+//                if (intent.hasCategory(Intent.CATEGORY_LAUNCHER) && Intent.ACTION_MAIN == action) {
+//                    // 从桌面启动的,finish掉该类，直接打开该Task中现存的Activity
+//                    finish()
+//                    return
+//                }
+//            }
+//        }
+
+
         image.setBackgroundColor(resources.getColor(R.color.colorPrimary))
         image.setText("ActivityTest1")
         image.setOnClickListener {
-            var intent = Intent(this, ActivityTest2::class.java)
+//            var intent = Intent(this, ActivityTest2::class.java)
 //            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
-//            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_DOCUMENT)
+            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_DOCUMENT)
 
-            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_DOCUMENT )
-            intent.addFlags(Intent.FLAG_ACTIVITY_MULTIPLE_TASK )
-            startActivity(intent)
+//            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_DOCUMENT )
+//            intent.addFlags(Intent.FLAG_ACTIVITY_MULTIPLE_TASK )
+
+            startActivityForResult(intent,100)
+//            startActivity(intent)
+
+//            var intent = Intent("com.jimu.test2")
+//            startActivity(intent)
         }
 
 
@@ -56,6 +71,12 @@ class ActivityTest1 : AppCompatActivity() {
 //            }
 //
 //        }
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+
+        Log.e("lz", "requestCode=$requestCode,_resultCode=$resultCode")
     }
 
     override fun onPause() {

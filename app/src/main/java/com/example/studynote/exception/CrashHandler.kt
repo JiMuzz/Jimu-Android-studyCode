@@ -11,19 +11,21 @@ class CrashHandler private constructor(): Thread.UncaughtExceptionHandler {
         this.context = context
         Thread.setDefaultUncaughtExceptionHandler(this)
 
-        Handler(Looper.getMainLooper()).post {
-            while (true) {
-                try {
-                    //主线程异常拦截
-                    Looper.loop()
-                } catch (e: Throwable) {
-                }
-            }
-        }
+//        Handler(Looper.getMainLooper()).post {
+//            while (true) {
+//                try {
+//                    //主线程异常拦截
+//                    Looper.loop()
+//                } catch (e: Throwable) {
+//                }
+//            }
+//        }
 
     }
 
-    override fun uncaughtException(t: Thread, e: Throwable) {}
+    override fun uncaughtException(t: Thread, e: Throwable) {
+
+    }
 
     companion object {
         val instance: CrashHandler by lazy(mode = LazyThreadSafetyMode.SYNCHRONIZED) {

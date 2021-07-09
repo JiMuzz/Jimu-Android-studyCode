@@ -137,7 +137,10 @@
         </activity>
 
         <activity android:name=".exception.ExceptionActivity">
-
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
 
         <activity android:name=".bitmap.BitmapActivity">
@@ -178,15 +181,11 @@
         <activity android:name=".recenttask.ActivityTest1"
 
             android:launchMode="standard">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
+
         </activity>
 
         <activity android:name=".recenttask.ActivityTest2"
-
-            android:launchMode="singleInstance">
+            android:launchMode="standard">
 
         </activity>
 

@@ -16,12 +16,13 @@ class ActivityTest2 :AppCompatActivity(){
         Log.e("lz",TAG+"onCreate")
         setContentView(R.layout.activity_recent)
 
-        image.setBackgroundColor(resources.getColor(R.color.leak_canary_count_new_border))
+        image.setBackgroundColor(resources.getColor(R.color.colorPrimaryDark))
         image.setText("ActivityTest2")
         image.setOnClickListener {
             var intent = Intent(this, ActivityTest1::class.java)
 //            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
-
+//            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_SINGLE_TOP)
+//            var intent = Intent("com.jimu.test2")
             startActivity(intent)
         }
 
